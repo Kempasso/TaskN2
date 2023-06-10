@@ -16,10 +16,13 @@ class FilesService:
     repository: FilesRepo = files_repository
 
     def convert_format(self, file):
-        audio_bytes = file.read()
-        audio = AudioSegment.from_file(io.BytesIO(audio_bytes))
-        audio = audio.export(format='mp3')
-        mp3_data = audio.read()
+        try:
+            audio_bytes = file.read()
+            audio = AudioSegment.from_file(io.BytesIO(audio_bytes))
+            audio = audio.export(format='mp3')
+            mp3_data = audio.read()
+        except Exception as e:
+            return {'message': "Convert failed", 'status_code': 500}
         return mp3_data
 
     def generate_uuid(self):
