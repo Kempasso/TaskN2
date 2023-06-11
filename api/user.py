@@ -13,10 +13,11 @@ class User(Resource):
 
     @staticmethod
     def post():
-        print(request.content_type)
-        username = request.json.get('username')
+        username = request.json.get('username', None)
         if not username:
-            return {"response": "Not enough data"}, 400
+            return {"response": "Not enough data"}, 401
+        elif not isinstance(username, str):
+            return {"msg": "Username have to be in string format"}, 401
         exist_user_check = user_service.check_exist_username(username)
         if exist_user_check:
             return exist_user_check

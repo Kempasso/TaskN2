@@ -26,7 +26,7 @@ sudo docker-compose up
 ### Пример POST запроса - создание юзера (Полученные user_uuid и user_id нужны для добавления аудио)
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"username": "ggg"}' http://127.0.0.1:8000/api/user/
+curl -X POST -H "Content-Type: application/json" -d '{"username": "gggdsasdadd"}' http://127.0.0.1:8000/api/user/
 ```
 
 ### Полученные user_uuid и user_id вписать в поля YOUR_UUID и YOUR_USER_ID
